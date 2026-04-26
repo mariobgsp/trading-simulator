@@ -1,0 +1,80 @@
+[
+  {
+    "date": "2026-04-01",
+    "ticker": "CASH",
+    "action": "DEPOSIT",
+    "qty": 1,
+    "price": 100000000,
+    "currency": "IDR",
+    "sl_price": 0,
+    "tp_price": 0,
+    "trailing_stop_pct": 0,
+    "reason": "Initial capital deposit",
+    "system_generated": false
+  },
+  {
+    "date": "2026-04-10",
+    "ticker": "GOTO.JK",
+    "action": "BUY",
+    "qty": 10000,
+    "price": 76,
+    "currency": "IDR",
+    "sl_price": 68,
+    "tp_price": 95,
+    "trailing_stop_pct": 0,
+    "reason": "Breakout above MA20",
+    "system_generated": false
+  },
+  {
+    "date": "2026-04-15",
+    "ticker": "AAPL",
+    "action": "BUY",
+    "qty": 5,
+    "price": 198.5,
+    "currency": "USD",
+    "sl_price": 185.0,
+    "tp_price": 225.0,
+    "trailing_stop_pct": 5,
+    "reason": "Earnings momentum play",
+    "system_generated": false
+  },
+  {
+    "date": "2026-04-20",
+    "ticker": "BTC-USD",
+    "action": "BUY",
+    "qty": 0.015,
+    "price": 67500.0,
+    "currency": "USD",
+    "sl_price": 62000.0,
+    "tp_price": 78000.0,
+    "trailing_stop_pct": 8,
+    "reason": "Halving cycle thesis",
+    "system_generated": false
+  },
+  {
+    "date": "2026-04-26",
+    "ticker": "GOTO.JK",
+    "action": "SELL",
+    "qty": 10000.0,
+    "price": 68.0,
+    "currency": "IDR",
+    "sl_price": 0,
+    "tp_price": 0,
+    "trailing_stop_pct": 0,
+    "reason": "Auto-executed: STOP_LOSS",
+    "system_generated": true
+  },
+  {
+    "date": "2026-04-26",
+    "ticker": "AAPL",
+    "action": "SELL",
+    "qty": 5.0,
+    "price": 225.0,
+    "currency": "USD",
+    "sl_price": 0,
+    "tp_price": 0,
+    "trailing_stop_pct": 0,
+    "reason": "Auto-executed: TAKE_PROFIT",
+    "system_generated": true
+  }
+]
