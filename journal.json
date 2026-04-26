@@ -76,5 +76,18 @@
     "trailing_stop_pct": 0,
     "reason": "Auto-executed: TAKE_PROFIT",
     "system_generated": true
+  },
+  {
+    "date": "2026-04-26",
+    "ticker": "BTC-USD",
+    "action": "SELL",
+    "qty": 0.015,
+    "price": 78000.0,
+    "currency": "USD",
+    "sl_price": 0,
+    "tp_price": 0,
+    "trailing_stop_pct": 0,
+    "reason": "Auto-executed: TAKE_PROFIT",
+    "system_generated": true
   }
 ]
