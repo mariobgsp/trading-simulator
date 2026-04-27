@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-27T14:31:30.869341+07:00",
+  "generated_at": "2026-04-27T18:47:00.794929+07:00",
   "items": [
     {
       "ticker": "GOTO.JK",
@@ -11,24 +11,24 @@
     },
     {
       "ticker": "AMMN.JK",
-      "current_price_native": 5475.0,
-      "current_price_idr": 5475.0,
+      "current_price_native": 5400.0,
+      "current_price_idr": 5400.0,
       "native_currency": "IDR",
-      "daily_change_pct": 9.5,
+      "daily_change_pct": 8.0,
       "previous_close": 5000.0
     },
     {
       "ticker": "BBCA.JK",
-      "current_price_native": 6000.0,
-      "current_price_idr": 6000.0,
+      "current_price_native": 5975.0,
+      "current_price_idr": 5975.0,
       "native_currency": "IDR",
-      "daily_change_pct": -0.83,
+      "daily_change_pct": -1.24,
       "previous_close": 6050.0
     },
     {
       "ticker": "TSLA",
       "current_price_native": 376.3,
-      "current_price_idr": 6472359.79,
+      "current_price_idr": 6468596.79,
       "native_currency": "USD",
       "daily_change_pct": 0.69,
       "previous_close": 373.7200012207031
@@ -36,25 +36,25 @@
     {
       "ticker": "NVDA",
       "current_price_native": 208.27,
-      "current_price_idr": 3582244.07,
+      "current_price_idr": 3580161.37,
       "native_currency": "USD",
       "daily_change_pct": 4.32,
       "previous_close": 199.63999938964844
     },
     {
       "ticker": "BTC-USD",
-      "current_price_native": 77673.5078,
-      "current_price_idr": 1335984334.38,
+      "current_price_native": 77807.5312,
+      "current_price_idr": 1337511462.19,
       "native_currency": "USD",
-      "daily_change_pct": -1.25,
+      "daily_change_pct": -1.08,
       "previous_close": 78657.5390625
     },
     {
       "ticker": "ETH-USD",
-      "current_price_native": 2318.74,
-      "current_price_idr": 39882327.83,
+      "current_price_native": 2319.54,
+      "current_price_idr": 39872893.27,
       "native_currency": "USD",
-      "daily_change_pct": -2.15,
+      "daily_change_pct": -2.12,
       "previous_close": 2369.72900390625
     }
   ]
