@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-04-27T03:51:32.054822+07:00",
-  "total_realized_pnl_idr": 5213840.0,
+  "generated_at": "2026-04-27T14:31:30.869318+07:00",
+  "total_realized_pnl_idr": 5342360.0,
   "total_trades_closed": 3,
   "trades": [
     {
@@ -30,12 +30,12 @@
       "ticker": "AAPL",
       "qty": 5.0,
       "sell_price_native": 225.0,
-      "sell_price_idr": 3886425.0,
+      "sell_price_idr": 3899025.0,
       "currency": "USD",
-      "forex_rate": 17273.0,
+      "forex_rate": 17329.0,
       "cost_basis_idr": 17000532.5,
-      "proceeds_idr": 19432125.0,
-      "realized_pnl_idr": 2431592.5,
+      "proceeds_idr": 19495125.0,
+      "realized_pnl_idr": 2494592.5,
       "matched_lots": [
         {
           "buy_date": "2026-04-15",
@@ -52,12 +52,12 @@
       "ticker": "BTC-USD",
       "qty": 0.015,
       "sell_price_native": 78000.0,
-      "sell_price_idr": 1347294000.0,
+      "sell_price_idr": 1351662000.0,
       "currency": "USD",
-      "forex_rate": 17273.0,
+      "forex_rate": 17329.0,
       "cost_basis_idr": 17347162.5,
-      "proceeds_idr": 20209410.0,
-      "realized_pnl_idr": 2862247.5,
+      "proceeds_idr": 20274930.0,
+      "realized_pnl_idr": 2927767.5,
       "matched_lots": [
         {
           "buy_date": "2026-04-20",
