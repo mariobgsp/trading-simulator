@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-28T14:28:44.777933+07:00",
+  "generated_at": "2026-04-28T18:48:33.474439+07:00",
   "items": [
     {
       "ticker": "GOTO.JK",
@@ -11,24 +11,24 @@
     },
     {
       "ticker": "AMMN.JK",
-      "current_price_native": 5175.0,
-      "current_price_idr": 5175.0,
+      "current_price_native": 5125.0,
+      "current_price_idr": 5125.0,
       "native_currency": "IDR",
-      "daily_change_pct": -4.17,
+      "daily_change_pct": -5.09,
       "previous_close": 5400.0
     },
     {
       "ticker": "BBCA.JK",
-      "current_price_native": 6025.0,
-      "current_price_idr": 6025.0,
+      "current_price_native": 6000.0,
+      "current_price_idr": 6000.0,
       "native_currency": "IDR",
-      "daily_change_pct": 0.84,
+      "daily_change_pct": 0.42,
       "previous_close": 5975.0
     },
     {
       "ticker": "TSLA",
       "current_price_native": 378.67,
-      "current_price_idr": 6528271.03,
+      "current_price_idr": 6520697.63,
       "native_currency": "USD",
       "daily_change_pct": 0.63,
       "previous_close": 376.29998779296875
@@ -36,33 +36,33 @@
     {
       "ticker": "NVDA",
       "current_price_native": 216.61,
-      "current_price_idr": 3734356.41,
+      "current_price_idr": 3730024.21,
       "native_currency": "USD",
       "daily_change_pct": 4.0,
       "previous_close": 208.27000427246094
     },
     {
       "ticker": "BTC-USD",
-      "current_price_native": 76615.5391,
-      "current_price_idr": 1320851893.44,
+      "current_price_native": 76196.0,
+      "current_price_idr": 1312095120.0,
       "native_currency": "USD",
-      "daily_change_pct": -0.97,
+      "daily_change_pct": -1.51,
       "previous_close": 77366.625
     },
     {
       "ticker": "ETH-USD",
-      "current_price_native": 2276.71,
-      "current_price_idr": 39250479.73,
+      "current_price_native": 2271.04,
+      "current_price_idr": 39107309.47,
       "native_currency": "USD",
-      "daily_change_pct": -1.14,
+      "daily_change_pct": -1.39,
       "previous_close": 2303.06396484375
     },
     {
       "ticker": "INET.JK",
-      "current_price_native": 310.0,
-      "current_price_idr": 310.0,
+      "current_price_native": 312.0,
+      "current_price_idr": 312.0,
       "native_currency": "IDR",
-      "daily_change_pct": 0.0,
+      "daily_change_pct": 0.65,
       "previous_close": 310.0
     }
   ]
