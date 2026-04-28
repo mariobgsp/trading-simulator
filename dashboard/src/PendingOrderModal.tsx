@@ -17,14 +17,27 @@ export default function PendingOrderModal({ quotes, liveForex, onSubmit, onClose
   const [condition, setCondition] = useState<'PRICE_AT_OR_BELOW' | 'PRICE_AT_OR_ABOVE'>('PRICE_AT_OR_BELOW');
   const [sl, setSl] = useState('');
   const [tp, setTp] = useState('');
-  const [trail, setTrail] = useState('');
+  const [trail] = useState('');
   const [reason, setReason] = useState('');
 
   const quote = quotes.get(ticker.toUpperCase());
   const currentPrice = quote?.current_price;
   const currency = quote?.currency || (ticker.toUpperCase().endsWith('.JK') ? 'IDR' : 'USD');
   const triggerVal = parseFloat(triggerPrice) || 0;
-  const totalIDR = (currency === 'IDR' ? triggerVal : triggerVal * liveForex) * (parseFloat(qty) || 0);
+
+  const isID = ticker.toUpperCase().endsWith('.JK');
+  const isCrypto = ticker.toUpperCase().includes('-USD') || ticker.toUpperCase().includes('BTC') || ticker.toUpperCase().includes('ETH');
+  
+  const multiplier = isID ? 100 : 1;
+  const inputLabel = isID ? 'Quantity (Lots)' : isCrypto ? 'Quantity (Coins)' : 'Quantity (Shares)';
+  const helperText = isID 
+    ? `1 Lot = 100 Shares. Total: ${(parseFloat(qty) || 0) * multiplier} Shares` 
+    : isCrypto 
+    ? 'Input exact amount of coins/tokens' 
+    : '1 Lot = 1 Share. Input number of shares';
+
+  const actualQty = (parseFloat(qty) || 0) * multiplier;
+  const totalIDR = (currency === 'IDR' ? triggerVal : triggerVal * liveForex) * actualQty;
 
   const handleSubmit = () => {
     if (!ticker || !qty || !triggerPrice) return;
@@ -33,7 +46,7 @@ export default function PendingOrderModal({ quotes, liveForex, onSubmit, onClose
       created_at: todayWIB(),
       ticker: ticker.toUpperCase(),
       action,
-      qty: parseFloat(qty),
+      qty: actualQty,
       trigger_price: triggerVal,
       condition,
       currency,
@@ -83,8 +96,9 @@ export default function PendingOrderModal({ quotes, liveForex, onSubmit, onClose
             <input type="number" value={triggerPrice} onChange={e => setTriggerPrice(e.target.value)} placeholder="Target price" step="any" />
           </div>
           <div className="field">
-            <label>Quantity</label>
+            <label>{inputLabel}</label>
             <input type="number" value={qty} onChange={e => setQty(e.target.value)} placeholder="0" min="0" step="any" />
+            {ticker && qty && <div style={{ fontSize: '.75rem', color: 'var(--text2)', marginTop: 4 }}>{helperText}</div>}
           </div>
         </div>
 

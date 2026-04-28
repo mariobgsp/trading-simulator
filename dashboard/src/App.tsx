@@ -3,7 +3,7 @@ import type { JournalEntry, PendingOrder, PortfolioState, TickerQuote } from './
 import { readLocalFile, writeLocalFile } from './github';
 import { fetchQuotes, fetchForexRate } from './prices';
 import { computePortfolio } from './engine';
-import { idr, pct, uid, todayWIB } from './utils';
+import { idr, pct, todayWIB } from './utils';
 import TradeModal from './TradeModal';
 import PendingOrderModal from './PendingOrderModal';
 
@@ -171,6 +171,28 @@ function App() {
           <button className="btn btn-green" onClick={() => { setTradeDef({ action: 'BUY' }); setShowTrade(true); }}>+ Buy</button>
           <button className="btn btn-red" onClick={() => { setTradeDef({ action: 'SELL' }); setShowTrade(true); }}>− Sell</button>
           <button className="btn" onClick={() => setShowPending(true)}>📋 Pending Order</button>
+          <button className="btn" onClick={() => {
+            const amtStr = window.prompt("Enter topup amount (IDR):");
+            if (!amtStr) return;
+            const amt = parseFloat(amtStr);
+            if (isNaN(amt) || amt <= 0) {
+              toast("Invalid amount", "error");
+              return;
+            }
+            executeTrade({
+              date: todayWIB(),
+              ticker: 'CASH',
+              action: 'DEPOSIT',
+              qty: 1,
+              price: amt,
+              currency: 'IDR',
+              sl_price: 0,
+              tp_price: 0,
+              trailing_stop_pct: 0,
+              reason: 'Manual topup',
+              system_generated: false,
+            });
+          }}>💰 Topup</button>
           <button className="btn" onClick={loadAll} disabled={loading}>{loading ? '⟳' : '↻'} Refresh</button>
         </div>
       </div>
