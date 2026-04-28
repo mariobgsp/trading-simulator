@@ -150,6 +150,37 @@ function App() {
 
   useEffect(() => { if (quotes.size > 0) checkPendingTriggers(); }, [quotes.size]); // eslint-disable-line
 
+  // ── Watchlist management ────────────────────────────────
+  const addToWatchlist = async (ticker: string) => {
+    if (watchlist.includes(ticker)) {
+      toast(`${ticker} is already in watchlist`, 'error');
+      return;
+    }
+    try {
+      const updated = [...watchlist, ticker];
+      await writeLocalFile('watchlist.json', updated);
+      setWatchlist(updated);
+      
+      const q = await fetchQuotes([...Array.from(quotes.keys()), ticker]);
+      setQuotes(q);
+      
+      toast(`Added ${ticker} to watchlist`);
+    } catch (e: unknown) {
+      toast('Failed to add: ' + (e instanceof Error ? e.message : String(e)), 'error');
+    }
+  };
+
+  const removeFromWatchlist = async (ticker: string) => {
+    try {
+      const updated = watchlist.filter(t => t !== ticker);
+      await writeLocalFile('watchlist.json', updated);
+      setWatchlist(updated);
+      toast(`Removed ${ticker} from watchlist`);
+    } catch (e: unknown) {
+      toast('Failed to remove: ' + (e instanceof Error ? e.message : String(e)), 'error');
+    }
+  };
+
   const ps = portfolio;
   const activeOrders = pendingOrders.filter(o => o.status === 'ACTIVE');
   const filledOrders = pendingOrders.filter(o => o.status !== 'ACTIVE');
@@ -313,7 +344,15 @@ function App() {
         {/* Sidebar */}
         <div className="main-col">
           <div className="card fade-in">
-            <div className="card-title">Watchlist</div>
+            <div className="card-title" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              Watchlist
+              <button className="btn btn-sm" onClick={() => {
+                const ticker = window.prompt("Enter ticker symbol (e.g. AAPL, BBCA.JK):");
+                if (ticker && ticker.trim()) {
+                  addToWatchlist(ticker.trim().toUpperCase());
+                }
+              }}>+</button>
+            </div>
             {watchlist.length === 0 ? <div className="empty">Watchlist empty</div> : (
               <>
                 {watchlist.map(ticker => {
@@ -327,9 +366,16 @@ function App() {
                         <div className="watch-ticker">{ticker}</div>
                         <div className="watch-price">{priceIDR != null ? idr(priceIDR) : '—'}</div>
                       </div>
-                      <div style={{ textAlign: 'right' }}>
-                        <div className="watch-price">{q?.current_price?.toLocaleString('en-US') ?? '—'} {cur !== 'IDR' ? cur : ''}</div>
-                        <div className={`watch-change ${chg != null ? (chg >= 0 ? 'pnl-pos' : 'pnl-neg') : ''}`}>{pct(chg)}</div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <div style={{ textAlign: 'right' }}>
+                          <div className="watch-price">{q?.current_price?.toLocaleString('en-US') ?? '—'} {cur !== 'IDR' ? cur : ''}</div>
+                          <div className={`watch-change ${chg != null ? (chg >= 0 ? 'pnl-pos' : 'pnl-neg') : ''}`}>{pct(chg)}</div>
+                        </div>
+                        <button 
+                          className="btn btn-sm btn-red" 
+                          onClick={() => removeFromWatchlist(ticker)}
+                          style={{ padding: '2px 6px', fontSize: '0.7rem', height: 'fit-content' }}
+                        >✕</button>
                       </div>
                     </div>
                   );
