@@ -21,13 +21,27 @@ export default function TradeModal({ quotes, liveForex, positions, onSubmit, onC
   const [trail, setTrail] = useState('');
   const [reason, setReason] = useState('');
 
+  const isID = ticker.toUpperCase().endsWith('.JK');
+  const isCrypto = ticker.toUpperCase().includes('-USD') || ticker.toUpperCase().includes('BTC') || ticker.toUpperCase().includes('ETH');
+  
+  const multiplier = isID ? 100 : 1;
+  const inputLabel = isID ? 'Quantity (Lots)' : isCrypto ? 'Quantity (Coins)' : 'Quantity (Shares)';
+  const helperText = isID 
+    ? `1 Lot = 100 Shares. Total: ${(parseFloat(qty) || 0) * multiplier} Shares` 
+    : isCrypto 
+    ? 'Input exact amount of coins/tokens' 
+    : '1 Lot = 1 Share. Input number of shares';
+
   const quote = quotes.get(ticker.toUpperCase());
   const price = quote?.current_price ?? 0;
   const currency = quote?.currency || (ticker.toUpperCase().endsWith('.JK') ? 'IDR' : 'USD');
   const priceIDR = currency === 'IDR' ? price : price * liveForex;
-  const totalIDR = priceIDR * (parseFloat(qty) || 0);
+  
+  const actualQty = (parseFloat(qty) || 0) * multiplier;
+  const totalIDR = priceIDR * actualQty;
 
-  const maxQty = action === 'SELL' ? positions.find(p => p.ticker === ticker.toUpperCase())?.qty ?? 0 : Infinity;
+  const maxShares = action === 'SELL' ? positions.find(p => p.ticker === ticker.toUpperCase())?.qty ?? 0 : Infinity;
+  const maxInput = action === 'SELL' ? maxShares / multiplier : Infinity;
 
   const handleSubmit = () => {
     if (!ticker || !qty || price === 0) return;
@@ -35,7 +49,7 @@ export default function TradeModal({ quotes, liveForex, positions, onSubmit, onC
       date: todayWIB(),
       ticker: ticker.toUpperCase(),
       action,
-      qty: parseFloat(qty),
+      qty: actualQty,
       price,
       currency,
       sl_price: parseFloat(sl) || 0,
@@ -75,8 +89,9 @@ export default function TradeModal({ quotes, liveForex, positions, onSubmit, onC
             <input value={price ? price.toLocaleString('en-US') : 'N/A'} disabled />
           </div>
           <div className="field">
-            <label>Quantity {action === 'SELL' && maxQty < Infinity ? `(max ${maxQty})` : ''}</label>
+            <label>{inputLabel} {action === 'SELL' && maxInput < Infinity ? `(max ${maxInput})` : ''}</label>
             <input type="number" value={qty} onChange={e => setQty(e.target.value)} placeholder="0" min="0" step="any" />
+            {ticker && qty && <div style={{ fontSize: '.75rem', color: 'var(--text2)', marginTop: 4 }}>{helperText}</div>}
           </div>
         </div>
 
