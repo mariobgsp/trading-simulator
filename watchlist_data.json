@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-05T18:17:42.724240+07:00",
+  "generated_at": "2026-05-06T04:10:01.824048+07:00",
   "items": [
     {
       "ticker": "GOTO.JK",
@@ -27,34 +27,34 @@
     },
     {
       "ticker": "TSLA",
-      "current_price_native": 392.51,
-      "current_price_idr": 6837524.37,
+      "current_price_native": 389.37,
+      "current_price_idr": 6782825.31,
       "native_currency": "USD",
-      "daily_change_pct": 0.43,
-      "previous_close": 390.82000732421875
+      "daily_change_pct": -0.8,
+      "previous_close": 392.510009765625
     },
     {
       "ticker": "NVDA",
-      "current_price_native": 198.48,
-      "current_price_idr": 3457521.53,
+      "current_price_native": 196.5,
+      "current_price_idr": 3423030.0,
       "native_currency": "USD",
-      "daily_change_pct": 0.02,
-      "previous_close": 198.4499969482422
+      "daily_change_pct": -1.0,
+      "previous_close": 198.47999572753906
     },
     {
       "ticker": "BTC-USD",
-      "current_price_native": 80904.0078,
-      "current_price_idr": 1409347816.09,
+      "current_price_native": 81659.6016,
+      "current_price_idr": 1422510259.22,
       "native_currency": "USD",
-      "daily_change_pct": 1.35,
+      "daily_change_pct": 2.29,
       "previous_close": 79827.90625
     },
     {
       "ticker": "ETH-USD",
-      "current_price_native": 2374.79,
-      "current_price_idr": 41368842.48,
+      "current_price_native": 2383.3601,
+      "current_price_idr": 41518133.07,
       "native_currency": "USD",
-      "daily_change_pct": 1.21,
+      "daily_change_pct": 1.58,
       "previous_close": 2346.39697265625
     },
     {
