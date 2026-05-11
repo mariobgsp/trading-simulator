@@ -36,6 +36,38 @@ export async function fetchQuote(ticker: string): Promise<TickerQuote> {
   };
 }
 
+export async function fetchOHLCV(ticker: string, range: string = '6mo'): Promise<any[]> {
+  const url = `/api/yahoo/v8/finance/chart/${encodeURIComponent(ticker)}?interval=1d&range=${range}`;
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`Yahoo OHLCV ${ticker}: HTTP ${r.status}`);
+
+  const json = await r.json();
+  const result = json.chart?.result?.[0];
+  if (!result || !result.timestamp) return [];
+
+  const timestamps = result.timestamp;
+  const quotes = result.indicators?.quote?.[0];
+  if (!quotes) return [];
+
+  const data = [];
+  for (let i = 0; i < timestamps.length; i++) {
+    if (quotes.open[i] == null || quotes.high[i] == null || quotes.low[i] == null || quotes.close[i] == null) continue;
+    
+    // Format timestamp as YYYY-MM-DD which lightweight-charts expects
+    const dateStr = new Date(timestamps[i] * 1000).toISOString().split('T')[0];
+    
+    data.push({
+      time: dateStr,
+      open: quotes.open[i],
+      high: quotes.high[i],
+      low: quotes.low[i],
+      close: quotes.close[i],
+      value: quotes.volume[i] || 0, // volume
+    });
+  }
+  return data;
+}
+
 /** Fetch USD→IDR exchange rate. */
 export async function fetchForexRate(): Promise<number> {
   try {

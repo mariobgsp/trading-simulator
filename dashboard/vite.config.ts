@@ -69,6 +69,29 @@ export default defineConfig({
           'User-Agent': 'Mozilla/5.0',
         },
       },
+      // Proxy Stockbit API requests (covers all endpoints: marketdetectors, orderbook, stream, news, etc.)
+      '/api/stockbit': {
+        target: 'https://exodus.stockbit.com',
+        changeOrigin: true,
+        rewrite: (p) => p.replace(/^\/api\/stockbit/, ''),
+        configure: (proxy, _options) => {
+          proxy.on('proxyReq', (proxyReq, _req, _res) => {
+            // Inject JWT token from local env if available
+            if (process.env.STOCKBIT_JWT_TOKEN) {
+              proxyReq.setHeader('authorization', `Bearer ${process.env.STOCKBIT_JWT_TOKEN}`);
+            }
+            proxyReq.setHeader('origin', 'https://stockbit.com');
+            proxyReq.setHeader('referer', 'https://stockbit.com/');
+            proxyReq.setHeader('user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36');
+          });
+        },
+      },
+      // Proxy Tradersaham API for daily broker flow
+      '/api/tradersaham': {
+        target: 'https://api.tradersaham.com',
+        changeOrigin: true,
+        rewrite: (p) => p.replace(/^\/api\/tradersaham/, ''),
+      },
     },
   },
 })
