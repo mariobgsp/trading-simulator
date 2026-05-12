@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-12T14:39:38.039354+07:00",
+  "generated_at": "2026-05-12T18:59:38.724825+07:00",
   "items": [
     {
       "ticker": "GOTO.JK",
@@ -11,10 +11,10 @@
     },
     {
       "ticker": "AMMN.JK",
-      "current_price_native": 4030.0,
-      "current_price_idr": 4030.0,
+      "current_price_native": 4070.0,
+      "current_price_idr": 4070.0,
       "native_currency": "IDR",
-      "daily_change_pct": -2.42,
+      "daily_change_pct": -1.45,
       "previous_close": 4130.0
     },
     {
@@ -28,7 +28,7 @@
     {
       "ticker": "TSLA",
       "current_price_native": 445.0,
-      "current_price_idr": 7796400.0,
+      "current_price_idr": 7785275.0,
       "native_currency": "USD",
       "daily_change_pct": 3.89,
       "previous_close": 428.3500061035156
@@ -36,33 +36,33 @@
     {
       "ticker": "NVDA",
       "current_price_native": 219.44,
-      "current_price_idr": 3844588.84,
+      "current_price_idr": 3839102.84,
       "native_currency": "USD",
       "daily_change_pct": 1.97,
       "previous_close": 215.1999969482422
     },
     {
       "ticker": "BTC-USD",
-      "current_price_native": 80979.1406,
-      "current_price_idr": 1418754543.75,
+      "current_price_native": 80754.9688,
+      "current_price_idr": 1412808178.28,
       "native_currency": "USD",
-      "daily_change_pct": -0.92,
+      "daily_change_pct": -1.19,
       "previous_close": 81728.296875
     },
     {
       "ticker": "ETH-USD",
-      "current_price_native": 2299.1001,
-      "current_price_idr": 40280233.71,
+      "current_price_native": 2285.98,
+      "current_price_idr": 39993219.76,
       "native_currency": "USD",
-      "daily_change_pct": -1.72,
+      "daily_change_pct": -2.28,
       "previous_close": 2339.36083984375
     },
     {
       "ticker": "INET.JK",
-      "current_price_native": 278.0,
-      "current_price_idr": 278.0,
+      "current_price_native": 282.0,
+      "current_price_idr": 282.0,
       "native_currency": "IDR",
-      "daily_change_pct": -3.47,
+      "daily_change_pct": -2.08,
       "previous_close": 288.0
     }
   ]
