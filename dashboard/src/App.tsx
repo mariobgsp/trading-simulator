@@ -13,7 +13,7 @@ import OrderbookCard from './OrderbookCard';
 import ActiveTradeCard from './ActiveTradeCard';
 import KeyStatsCard from './KeyStatsCard';
 import NewsCard from './NewsCard';
-import AdvancedChartCard from './AdvancedChartCard';
+import IndicatorSignalCard from './IndicatorSignalCard';
 
 interface Toast { id: number; msg: string; type: 'success' | 'error' }
 type TabKey = 'portfolio' | 'market' | 'fundamentals' | 'news';
@@ -468,7 +468,7 @@ function App() {
                 <>
                   <EmitenInfoCard emiten={selectedTicker} />
                   <div style={{ marginTop: 14 }}>
-                    <AdvancedChartCard emiten={selectedTicker} />
+                    <IndicatorSignalCard emiten={selectedTicker} />
                   </div>
                   <div className="content-grid" style={{ marginTop: 14 }}>
                     <BandarmologyCard emiten={selectedTicker} />

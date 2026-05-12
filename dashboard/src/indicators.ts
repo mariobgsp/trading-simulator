@@ -148,3 +148,76 @@ export function alignData<T extends {time: string}>(primary: T[], secondary: {ti
   }
   return result;
 }
+
+/**
+ * Calculate MACD (Moving Average Convergence Divergence)
+ */
+export function calculateMACD(data: OHLCV[]): { time: string; macd: number; signal: number; histogram: number }[] {
+  if (data.length < 26) return [];
+  
+  const calculateEMA = (values: number[], period: number) => {
+    const k = 2 / (period + 1);
+    const ema = [values[0]];
+    for (let i = 1; i < values.length; i++) {
+      ema.push(values[i] * k + ema[i - 1] * (1 - k));
+    }
+    return ema;
+  };
+
+  const closes = data.map(d => d.close);
+  const ema12 = calculateEMA(closes, 12);
+  const ema26 = calculateEMA(closes, 26);
+  
+  const macdLine = ema12.map((v, i) => v - ema26[i]);
+  const signalLine = calculateEMA(macdLine, 9);
+  
+  return data.map((d, i) => ({
+    time: d.time,
+    macd: macdLine[i],
+    signal: signalLine[i],
+    histogram: macdLine[i] - signalLine[i]
+  }));
+}
+
+/**
+ * Calculate Full Stochastic Oscillator (%K and %D)
+ */
+export function calculateStochasticFull(data: OHLCV[], period: number = 14, smoothK: number = 3, smoothD: number = 3): { time: string; k: number; d: number }[] {
+  const result: { time: string; k: number; d: number }[] = [];
+  if (data.length < period) return result;
+
+  const rawK: number[] = [];
+  for (let i = period - 1; i < data.length; i++) {
+    const window = data.slice(i - period + 1, i + 1);
+    const highestHigh = Math.max(...window.map(d => d.high));
+    const lowestLow = Math.min(...window.map(d => d.low));
+    const currentClose = data[i].close;
+    
+    let k = 50;
+    if (highestHigh !== lowestLow) {
+      k = ((currentClose - lowestLow) / (highestHigh - lowestLow)) * 100;
+    }
+    rawK.push(k);
+  }
+
+  // Simple Moving Average for smoothing
+  const sma = (values: number[], period: number, index: number) => {
+    if (index < period - 1) return values[index];
+    let sum = 0;
+    for (let i = 0; i < period; i++) sum += values[index - i];
+    return sum / period;
+  };
+
+  const smoothKLine = rawK.map((_, i) => sma(rawK, smoothK, i));
+  const smoothDLine = smoothKLine.map((_, i) => sma(smoothKLine, smoothD, i));
+
+  for (let i = 0; i < rawK.length; i++) {
+    result.push({
+      time: data[i + period - 1].time,
+      k: smoothKLine[i],
+      d: smoothDLine[i]
+    });
+  }
+
+  return result;
+}
