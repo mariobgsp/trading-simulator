@@ -44,7 +44,7 @@ Located in the `/dashboard` directory, this layer transforms the raw JSON data i
 ### Component Architecture:
 *   **Portfolio Module**: An internal TypeScript port of the Python engine runs live in the browser. It reads `journal.json`, applies FIFO (First-In-First-Out) matching logic, and calculates real-time PnL by combining historical costs with live market quotes.
 *   **Market Intel Module**: Dedicated views for market analysis.
-    *   `AdvancedChartCard`: Renders daily OHLCV, Volume, and custom indicators (RSI, Stochastic, MFI, Bandar CFI).
+    *   `IndicatorSignalCard`: Analyzes and displays golden cross/death cross signals for MACD, RSI, and Stochastic oscillators.
     *   `BandarmologyCard`: Visualizes institutional accumulation/distribution, broker summaries, and net foreign flows.
     *   `OrderbookCard`: Bid/Ask visualization.
     *   `ActiveTradeCard` & `KeyStatsCard`: Financial ratios and daily trade velocity.
