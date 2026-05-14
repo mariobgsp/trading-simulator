@@ -8,8 +8,9 @@ It uses a unique Git-Ops architecture: JSON files act as your database, a Python
 
 ## 🌟 Key Features
 
-*   **Advanced Market Intelligence**: Integrated directly with external APIs (Stockbit, Tradersaham) to provide Bandarmology accumulation/distribution patterns, orderbook visualization, broker summaries, and key fundamental stats.
-*   **Professional Charting**: Features a built-in TradingView-style interactive chart (via `lightweight-charts`) complete with custom technical indicators (RSI, Stochastic, MFI) and a unique **Bandarmology flow overlay**.
+*   **Advanced Market Intelligence**: Integrated directly with external APIs (Stockbit, Tradersaham, IDX) to provide Bandarmology patterns, orderbook visualization, broker summaries, and key stats.
+*   **Sentinel News Intelligence**: A multi-channel news wire that extracts real-time market news from major Indonesian portals (CNBC, Detik, CNN, Antara) and official IDX headlines. Features AI-driven sentiment analysis and summaries.
+*   **Professional Charting**: Features a built-in TradingView-style interactive chart complete with custom technical indicators and a unique Bandarmology flow overlay.
 *   **Multi-Currency FIFO Engine**: Accurately tracks realized Profit and Loss (PnL) using First-In-First-Out logic. It fetches the exact historical USD/IDR exchange rate for the day a foreign trade occurred to determine a precise cost basis.
 *   **Phantom Auto-Execution**: The backend engine checks daily High/Low prices against your active positions. If a Stop Loss (SL), Take Profit (TP), or Trailing Stop is breached, it automatically executes the sell.
 *   **Conditional Pending Orders**: Set "Support Buy" or "Breakout Buy" limit orders.
