@@ -21,6 +21,7 @@ The application is heavily enriched with features typically found in premium ter
 - **Broker Summaries**: Identifies the top buyers and sellers (brokers) for a given stock.
 - **Active Trade & Orderbook**: Visualizes current market liquidity, bid/ask ratios, and daily trade velocity.
 - **Fundamental Key Stats**: Displays valuation ratios, income statements, and balance sheet metrics.
+- **Sentinel News Intelligence**: A multi-channel news wire with AI-driven sentiment analysis and automated summaries. It aggregates official IDX news and major Indonesian financial portals.
 
 ### 3. Advanced TradingView-Style Charting
 - Uses `lightweight-charts` to provide fluid, responsive charting.
@@ -52,13 +53,24 @@ Navigate to `http://localhost:5173`. The proxy server will automatically mask yo
 - **Pending Orders**: Add limit orders or breakout triggers to `pending_orders.json`.
 - **Reset**: The "Clear" button instantly wipes your trading history, allowing you to reset your simulator capital back to the initial state.
 
-### 4. Background Execution
-To ensure pending orders and Stop-Loss thresholds trigger properly based on daily market action, you must run the Python engine periodically.
+### 4. Market Intelligence Processing
+To keep the Sentinel News Wire updated with the latest headlines and sentiment analysis, you should run the news pipeline:
+
+```bash
+# Fetch latest news from IDX and Portals
+python news_service.py
+
+# Perform sentiment analysis and summary generation
+python news_analyzer.py
+```
+
+### 5. Background Execution
+To ensure pending orders and Stop-Loss thresholds trigger properly based on daily market action, run the main engine:
 
 ```bash
 python engine.py
 ```
-*Note: If hosted on GitHub, this is handled automatically via GitHub Actions.*
+*Note: If hosted on GitHub, all these processes are handled automatically via GitHub Actions.*
 
 ---
 
@@ -66,7 +78,9 @@ python engine.py
 
 - `/dashboard`: The React 19 application. Contains all UI components, custom hooks, charting logic, and the Vite proxy configuration.
 - `/documentation`: High-level architecture and project documentation.
-- `engine.py`: The backend Python clearing house script.
+- `engine.py`: The main portfolio clearing house script.
+- `news_service.py` & `news_analyzer.py`: The Sentinel news intelligence pipeline.
+- `news_data.json`: The database of analyzed news and market signals.
 - `journal.json`: Your master trading ledger.
 - `pending_orders.json`: Unfilled trading limits and triggers.
 - `watchlist.json`: Your local ticker tracking list.

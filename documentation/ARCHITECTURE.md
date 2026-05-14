@@ -29,10 +29,27 @@ Located at `engine.py` (and potentially `stockbit.py` for API syncs), the Python
 *   **Phantom Execution**: Iterates through active positions and pending orders. It fetches historical/daily candle data to check if Stop Loss (SL), Take Profit (TP), or entry triggers have been breached. If breached, it auto-generates the corresponding SELL or BUY event in `journal.json`.
 *   **Cost Basis & Forex Calculation**: Converts foreign assets (e.g., USD stocks or crypto) to the master currency (IDR) using the precise historical USDIDR exchange rate from the date of the transaction.
 *   **State Generation**: Outputs cached analytical states to the `/output` folder, which can be consumed by lightweight static viewers.
+*   **Sentinel News Wire**: Aggregates official IDX news and media portal headlines into `news_data.json` for frontend consumption.
 
 ---
 
-## 3. Frontend Layer: React & Vite Dashboard
+## 3. News Intelligence Pipeline (Sentinel)
+
+The Sentinel system is a two-stage pipeline designed to transform raw financial news into actionable trading signals.
+
+1.  **Extraction (`news_service.py`)**: Fetches data from multiple sources:
+    *   **Official IDX API**: Scrapes latest headlines directly from the Indonesian Stock Exchange.
+    *   **Media Portals**: Parses RSS feeds from CNBC Indonesia, Detik Finance, CNN, and Antara.
+    *   **Global Feeds**: Includes Yahoo Finance and Investing.com for macro context.
+    *   **Ticker Tagging**: Automatically extracts 4-letter emiten codes from titles/descriptions.
+2.  **Analysis (`news_analyzer.py`)**: A logic-driven analyzer that:
+    *   Scores items for Bullish/Bearish sentiment based on financial keywords.
+    *   Generates concise AI-style summaries for the "Sentinel News Wire" UI.
+    *   Updates the `status` of news items from `raw` to `analyzed`.
+
+---
+
+## 4. Frontend Layer: React & Vite Dashboard
 
 Located in the `/dashboard` directory, this layer transforms the raw JSON data into a rich, interactive trading terminal.
 
