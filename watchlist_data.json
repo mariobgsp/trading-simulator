@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-15T14:49:34.783670+07:00",
+  "generated_at": "2026-05-15T18:58:28.708088+07:00",
   "items": [
     {
       "ticker": "GOTO.JK",
@@ -43,18 +43,18 @@
     },
     {
       "ticker": "BTC-USD",
-      "current_price_native": 80833.5234,
-      "current_price_idr": 1411353319.22,
+      "current_price_native": 80627.3438,
+      "current_price_idr": 1407753421.88,
       "native_currency": "USD",
-      "daily_change_pct": -0.27,
+      "daily_change_pct": -0.52,
       "previous_close": 81051.25
     },
     {
       "ticker": "ETH-USD",
-      "current_price_native": 2266.6899,
-      "current_price_idr": 39576406.38,
+      "current_price_native": 2257.05,
+      "current_price_idr": 39408093.85,
       "native_currency": "USD",
-      "daily_change_pct": -0.62,
+      "daily_change_pct": -1.05,
       "previous_close": 2280.934814453125
     },
     {
